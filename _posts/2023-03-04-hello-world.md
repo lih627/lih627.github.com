@@ -65,3 +65,9 @@ $$
 ```
 ![My Cannon80D](/imgs/2023-03-05-Canon80D.jpeg){:height="50%" width="50%" .circle}
 
+
+### References
+
+1. [https://yuleii.github.io/](https://yuleii.github.io/)
+2. [Markdown syntax](https://markdown.com.cn/basic-syntax/)
+3. [Jekyll TeXt-theme doc](https://kitian616.github.io/jekyll-TeXt-theme/docs/en/quick-start)
