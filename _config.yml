@@ -131,7 +131,7 @@ comments:
     clientSecret: 3909824b24998665f97b6d9fa2418455e49971f2 # GitHub Application Client Secret
     repository  : GitalkRepo # GitHub repo
     owner       : lih627 # GitHub repo owner
-    admin: lih627 # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+    admin: ["lih627"] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
       # - your GitHub Id
 
   ## Valine
@@ -185,12 +185,11 @@ permalink   : date
 
 exclude:
   - CHANGELOG.md
-  - HOW_TO_RELEASE.md
   - Gemfile
   - Gemfile.lock
   - LICENSE
   - README-*.md
-  - "Jekll-text-theme-README-zh.md"
+  - Jekll-text-theme-README-zh.md
   - README.md
   - gulpfile.js
   - jekyll-text-theme.gemspec
