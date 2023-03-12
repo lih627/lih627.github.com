@@ -10,7 +10,7 @@ Affinity photo 兼顾 LR + PS 的功能, 对于照片的管理, 使用 bridge �
 
 <!--more-->
 
-### 在进入照片角色之前
+# 在进入照片角色之前
 
 Affinity photo 有四种模式, 常用的是照片角色(photo persona)和开发角色(develop persona). 
 打开 raw 文件, affinity photo 会自动进入开发角色, 在开发角色中, 可以对原始图片做一些基本的处理, 例如调整对比度, 清晰度, 矫正畸变等.
@@ -21,9 +21,9 @@ Affinity photo 有四种模式, 常用的是照片角色(photo persona)和开发
 例如, 图片黑白化不一定要在develop persona实现, 而是在 photo persona, 通过添加一个 adjustment layer实现, 添加 layer 是 non-destructive edit.
 
   
-### 照片角色
+## 照片角色
 
-#### 图层(Layers)
+### 图层(Layers)
 
 打开的照片, 在 Layers中显示为 Background(Pixel), Pixel指像素图层,由于图层是按照一定顺序排列, 像素图层可以遮挡住它下面的图层. 选中图层,右键点击 duplicate 可以拷贝一份副本.
 
@@ -33,13 +33,13 @@ Affinity photo 有四种模式, 常用的是照片角色(photo persona)和开发
 
 可以当前像素图层上添加的调整图层, 与像素图层不同的一点是, 调整图层不会覆盖下方的图层, 而是对下方所有图层的显示结果加一些修改. 我目前发现有两种方式可以添加: 点击 Layers 旁边的 Adjustment, 或者layer导航栏最下方的圆形图标. 如下图所示:
 
-![Add adjustment layers in affinity photo](/imgs//affinity%20photo%20tools/add-adjustment-layers.png){:height="50%" width="50%"} 
+![Add adjustment layers in affinity photo](/imgs//affinity-photo-tools/add-adjustment-layers.png){:height="50%" width="50%"} 
 
 调整图层非常多,初学者只需要掌握少数几个.
 
-##### Levels Adjustment
+###### Levels Adjustment
 
-![levels layer](/imgs/affinity%20photo%20tools/levels-layer.png){:height="50%" width="50%"} 
+![levels layer](/imgs/affinity-photo-tools/levels-layer.png){:height="50%" width="50%"} 
 
 用来截断亮度. 当前状态 RGB Master 表示对明度进行截断.
 点击 Master 可以选择对R/G/B单独一个通道截断. 可是尝试向右移动Black Level的滑块, 意味着明度小于对应值的像素都会被截断成0. 画面变暗. White Leve同理. Gamma 表示 Gamma-Compensation function `x ^ (1 / gamma)` 含义是:
@@ -49,9 +49,9 @@ Affinity photo 有四种模式, 常用的是照片角色(photo persona)和开发
 
 因此 gamma 大于 1, 明度整体降低, 反之变亮. Level调整图层结束后直接关闭就好. 可在Layers下面看到添加并调好参数的level 图层. Opacity 表示该图层影响的强度. 调整为 0% 等价于删除对应图层,
 
-##### Vibrance Adjustment
+###### Vibrance Adjustment
 
-![vibrance layer](/imgs/affinity%20photo%20tools/vibrance-layer.png){:height="50%" width="50%"}
+![vibrance layer](/imgs/affinity-photo-tools/vibrance-layer.png){:height="50%" width="50%"}
 
 > Saturation intensifies all the colors in your images.
 >
@@ -61,28 +61,136 @@ Affinity photo 有四种模式, 常用的是照片角色(photo persona)和开发
 
 ##### Black & White Adjustment
 
-![black and white layer](/imgs/affinity%20photo%20tools/black-white-layer.png){:height="50%" width="50%"}
+![black and white layer](/imgs/affinity-photo-tools/black-white-layer.png){:height="50%" width="50%"}
 
 显示图像上的不同颜色在黑白下的明暗程度, 例如可以吧红色部分变暗或者变亮. 在这种模式下, 点击 picker, 然后点击图片, 鼠标会变成一个尺子, 按住鼠标选择想要变亮/暗的位置, 然后想左右拉动鼠标, 就会自动向左右移动受影响颜色的滑块. Opacity 也可以用于此 layer, 让图片重新有色彩.
 
 ##### 其他重要操作:
 
 **Ground/UnGrounp**:
+
 1. Shift + 点击头尾全选图层
 2. Cmd + 点击想要合成的图层
 点击 Grounp layers 即可
 
 **Merge Visible**:
+
 这个操作**非常重要**, 是将多个被勾选的图层合并成一个**像素图层**. 例如勾选原始的像素图层+所有调整图层, `Cmd+Opt+Shift+E` 可以将更改生成一个新的像素图层.
 
-#### Essential Tools
+**Fit image to the available preview area**
 
-![Photo persona tools](/imgs/affinity%20photo%20tools/photo-persona-tools.png){:height="50%" width="50%"}
+双击 Background Layer 可以直接让图片适合当前的可视区域.
 
-在照片角色的左栏是工具栏, 双击后可以把它从主界面分离, 如上图.
+### Essential Tools
+
+〉 **Don't** try to learn **ALL**  the tools. Learn esstntial tools.
+
+![Photo persona tools](/imgs/affinity-photo-tools/photo-persona-tools.png){:height="10%" width="10%"}
+
+在照片角色的左栏是工具栏, 双击后可以把它从主界面分离, 如上图. View->Custom tools 可以定制化工具栏. 把鼠标放到工具图标上, 会显示工具的名字和快捷键. 工具右下方灰色小三角表示这是一个工具组, 点击可以展开.
+
+#### View Too [H]
+
+鼠标会变成手的形状, 点按可以让显示区域在画布上移动. 适合在100%显示的时候, 拖动显示区域以关注细节.
+
+
+
+#### Move Tool [V]
+
+![move tool](/imgs/affinity-photo-tools/move-tool.jpeg){:height="50%" width="50%"}
+
+打开后会有一些控制点, 用来调整目标的大小. 目前是**x** 的状态, 因为 layer -> background layers 显示锁定的状态. 点击layer对应的🔒解锁即可. 解锁后, 可以通过新状态来调整形状, 也可以通过按住鼠标拖动移动目标.
+
+#### Crop Tool [C]
+
+用来裁剪图片, non-destructive op.
+
+- Darken 表示被舍弃的区域变暗, Reveal 可以可视化被裁剪掉的的区域(所以 non-destructive)
+
+#### Paintbrush Tool [B]
+
+brush-based tool 基本都有相同的模块, 建议开启 preferences -> show brush previews, 它可以在画布上预览笔刷. 笔刷工具都是 destructive tool, 最好 `Shit+Cmd+N` 在新建的图层上绘制.
+
+![brush-tool](/imgs//affinity-photo-tools/brush-opacity-flow-hardness.png){:height="50%" width="50%"}
+
+通常, 一条线由 N 个笔画构成:
+
+- opacity: 控制这条线最大的不透明度. 
+- flow: 控制单条笔画的不透明度, 比如 flow = 100, 在绘制一条线的时候, 无论如何重合, 线条的不透明度都是opacity.
+- width: 控制使用笔触的粗细, 快捷键 '[' 和 ‘]', 通过快捷键方便直接在画布看大小.
+- hardness: 控制笔画边缘的硬度, 越低边缘虚化越强.
+
+**如何调整笔画的颜色**:
+
+通过 Swatches 或 Colour studio选取颜色
+
+![brush-color](/imgs/affinity-photo-tools/color-studio.png){:height="50%" width="50%"}
+
+- Swatches studio: 选取色块, 有一些配置, 比如 Grey/Colours/Apple等.
+- Colour studio: 有很多种模式, wheel/slider 等.
+
+
+#### Clone[S] & Healing[J] Brush
+
+用来去掉照片上不要想的目标.
+
+Clone[S] Brush Tool: 印章图案
+
+1. 新建像素图层
+2. 注意选择采样区域为 `current layer & below`
+3. 设定采样区域, Opt + 点选
+4. 找到想要被覆盖的区域, 鼠标涂抹即可
+
+Clone brush tool 使用时注意不断选择合适的采样点.
+
+Healing[J] Brush Tool: 创可贴图案, 与 Clone brush 不同的是, 它会尝试混合当前区域与采样区域, 而不是生硬的覆盖.
+
+### Filters & Live Filters
+
+#### Filters (destructive)
+
+与 adjustment layer 不同, Filter 是 destructive edit, 作用于像素图层或者 **Mask layer**. 在 菜单栏->Filters 打开, 应用于当前选中的像素图层. Filter会提供多种预览选项, 一旦被应用到对应的图层, 将无法恢复到原来的状态.
+
+ 如果选中一个调整图层, 添加filter, 将看不到效果, 因为调整图层没有像素. 调整图层作用范围可以通过 Opt+鼠标左键 点击对应的图层显示, 通常是全白色. Filter 可以和 layer mask 结合, 更加动态改变调整图层对下面元素的影响. 例如:
+
+ 首先通过 rectangle marquee tool[M] 在调整图成选择矩形框. Cmd+I 可以反转像素, 对调整图层来说, 矩形框内的像素将不会被处理. 此时 Opt+鼠标左键选择调整图层, 白色画布中出现黑色色块.
+
+ ![layer-mask](/imgs/affinity-photo-tools/layer-mask.png)
+
+可以将Filter作用于此时的调整图层, 效果如下图, 滤镜将调整图层 {0, 255} 像素分布变为 [0, 255], 调整图层作用强度将是非线性变化的:
+
+![filter-layer-mask](/imgs/affinity-photo-tools/filter-layer-mask.jpeg)
+
+#### Live Filters (non-destructive)
+
+> Live Filers = Filter + Adjustment Layer
+
+![live-filter-layer](/imgs/affinity-photo-tools/live-filter-layer.png)
+
+通过 菜单栏->Layer->New Live Filter Layer 添加, 他会附着在所选定的图层下面. 与普通的 filter 不同点:
+
+- Live filter 在设置的时候不会有取消项.
+- 对应的图层有Opacity选项
+- 并不是所有的Filter都有对应的 live filter
+
+#### 如何防止破坏性修图
+
+**Shift+Opt+Cmd+E** 创建一个合并的增强像素图层, 在它上面进行破坏性修图.
+
+
+
+
+
+
+
+
+
+
 
 
 ### References
 
 - 我目前根据Youtube的视频教程学习, [Affinity Photo for Beginers](https://www.youtube.com/playlist?list=PLUyadHduIq2f6YMErTU9_P5CIDIo15yq1)
 - Question on the Gamma(mid-tone) value in levels adjustment layer. [Link](https://community.adobe.com/t5/photoshop-ecosystem-discussions/question-on-the-gamma-mid-tone-value-in-levels-adjustment-layer/td-p/10869779)
+- [如何理解笔刷工具的 flow 和 opacity?](https://forum.affinity.serif.com/index.php?/topic/20014-helpful-explanation-of-the-difference-between-brush-flow-and-brush-opacity/)
+ 
