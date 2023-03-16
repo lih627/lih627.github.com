@@ -1,6 +1,6 @@
 ---
 layout: article
-title: Affinity Photo 笔记[WIP]
+title: Affinity Photo 笔记
 tags: tools
 ---
 
@@ -218,6 +218,31 @@ Mask 如何使用:
 ![channel](/imgs/affinity-photo-tools/channel.png){:height="50%" width="50%"}
 
 
+### Selections
+
+Selection 用来创造各种mask. Cmd+d 取消选择, 一旦有选择区域,笔刷工具都只能在选择区域绘制.
+
+Selection Mode:
+- New: 每次都创建一个新的Selection
+- Add: 将新的选择区域和之前选择区域合并
+- Substract: 原始区域会减去选择的区域
+- Intersect: 取交集
+
+在选区显示的时候, 有两种将 selection 变成 layer mask 的方式:
+- 选择图层, 然后点击 mask layer 可以自动将选择应用到对应图层上. 
+- 或者直接添加调整图层.
+
+Selection Mode用来将不同selection tool的结果融合.
+- Rectangular marquee tool [M]
+- Freehand selection tool[L] 绳索形状, 可以自由绘制选择区域. 有额外的type:
+    - Freehand: 点按住可以自由绘制
+    - Polygonal: 点击一下, 绘制线段, 按住自由绘制
+    - Magentic: 🧲形状, 会自动吸附边缘
+- Flood select tool[W]: 魔棒形状, Source 通常设置为 All layers, 他同来选择相似的像素. Contiguous 决定选区是否联通
+- Selection Brush Tool[W]: 也叫 selection brush, 直接刷想要选择的区域. 可以参考: [Secret Feature in the Affinity Photo: Selectioon Brush](https://www.youtube.com/watch?v=lgP1HP5fLkc)
+
+保存selection:
+- 菜单栏->Select->Save Selection->As Spare Channel
 
 
 ### References
@@ -225,4 +250,5 @@ Mask 如何使用:
 - 我目前根据Youtube的视频教程学习, [Affinity Photo for Beginers](https://www.youtube.com/playlist?list=PLUyadHduIq2f6YMErTU9_P5CIDIo15yq1)
 - Question on the Gamma(mid-tone) value in levels adjustment layer. [Link](https://community.adobe.com/t5/photoshop-ecosystem-discussions/question-on-the-gamma-mid-tone-value-in-levels-adjustment-layer/td-p/10869779)
 - [如何理解笔刷工具的 flow 和 opacity?](https://forum.affinity.serif.com/index.php?/topic/20014-helpful-explanation-of-the-difference-between-brush-flow-and-brush-opacity/)
+- [Secret Feature in the Affinity Photo: Selectioon Brush](https://www.youtube.com/watch?v=lgP1HP5fLkc)
  
