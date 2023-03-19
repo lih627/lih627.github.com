@@ -97,7 +97,7 @@ View->Studio->layers 可以可视化 layer studio. Background 是像素图层, �
 
 **Blending**:
 
-通常, 混合模式时Normal. 例如对于风景照片的S取消, 除了Opacity, 可以再加上 soft light的混合模式, 后者会同事提高色彩饱和度.
+通常, 混合模式时Normal. 例如对于风景照片的S取消, 除了Opacity, 可以再加上 soft light的混合模式, 后者会同时提高色彩饱和度.
 
 **Layer Effects(fx图标)**
 有个更多的图层效果, 例如可以添加阴影, 比如对于只有文字的图层.
