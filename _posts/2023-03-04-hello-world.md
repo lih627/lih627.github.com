@@ -1,7 +1,7 @@
 ---
 layout: article
 title: Hello world, my blog!
-tags: Normal
+tags: normal
 mathjax: true
 ---
 
