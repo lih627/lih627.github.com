@@ -27,3 +27,5 @@ key: page-about
 ---
 
 一些生活记录.
+
+wechat: hellohli_
