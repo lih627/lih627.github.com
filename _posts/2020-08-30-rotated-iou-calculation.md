@@ -10,11 +10,15 @@ tags: geometry algorithm
 
 ## 简介
 
-在目标检测的领域，基于Anchor的方法需要对Anchor分配正负样本的标签。通常，对于axis-aligned的anchor和ground truth，可以直接通过 `[top left right down]`四个值计算他们之间的重叠面积。但是针对于旋转的矩形框，这个问题就变得尤为复杂。
+在目标检测的领域，基于Anchor的方法需要对Anchor分配正负样本的标签。
+通常，对于axis-aligned的anchor和ground truth，可以直接通过 `[top left right down]`四个值计算他们之间的重叠面积。
+但是针对于旋转的矩形框，这个问题就变得尤为复杂。
 
-我参考了3D目标检测论文[SECOND](https://github.com/traveller59/second.pytorch)的源码，来尝试解释一下如何计算旋转包围盒的重叠面积。
+我参考了3D目标检测论文[SECOND](https://github.com/traveller59/second.pytorch)的源码，
+来尝试解释一下如何计算旋转包围盒的重叠面积。
 
-代码全部来自[second.pytorch](https://github.com/traveller59/second.pytorch)这个项目的早期版本，去掉了numba/cuda加速的代码。
+代码全部来自[second.pytorch](https://github.com/traveller59/second.pytorch)这个项目的早期版本，
+去掉了numba/cuda加速的代码。
 
 ## 旋转包围盒的编码方式
 
@@ -28,7 +32,8 @@ rbbox = [x, y, x_d (w), y_d (h), angle]
 
 ### 矢量的旋转公式
 
-将矢量看作列矢量$\vec{\alpha}\in \mathbb R^{2\times1}$， 则将其逆时针旋转$\theta$ 之后的矢量为：
+将矢量看作列矢量$\vec{\alpha}\in \mathbb R^{2\times1}$, 
+则将其逆时针旋转$\theta$ 之后的矢量为：
 
 $$
 \begin{bmatrix}\cos\theta&-\sin\theta\\ \sin\theta & \cos\theta\end{bmatrix}\vec{\alpha}
@@ -49,7 +54,9 @@ $$
 旋转后的向量可以被表示为
 
 $$
-\overrightarrow{OA'} = T_\theta\overrightarrow{OA} = \begin{bmatrix} \cos\theta\cdot\frac{-x_d}{2} -\sin\theta\frac{-y_d}{2}\\ \sin\theta \frac{-x_d}{2} + \cos\theta\frac{-y_d}{2}\end{bmatrix}
+\overrightarrow{OA'} = T_\theta\overrightarrow{OA} = \begin{bmatrix} 
+\cos\theta\cdot\frac{-x_d}{2} -\sin\theta\frac{-y_d}{2}\\ \sin\theta 
+\frac{-x_d}{2} + \cos\theta\frac{-y_d}{2}\end{bmatrix}
 $$
 通过 $A’ = O + \overrightarrow{OA’}$ 恢复顶点的坐标即可。
 
@@ -89,7 +96,8 @@ print([round(_) for _ in corners])
 
 ## 相交区域的特点
 
-两个四边形(矩形)，求交叠面积，可以先求出相交的多边形(Polygon)的顶点, 构成多边形的顶点可由两种类型的点构成：
+两个四边形(矩形)，求交叠面积，可以先求出相交的多边形(Polygon)的顶点, 
+构成多边形的顶点可由两种类型的点构成：
 
 1. 原始四边形的顶点
 2. 四边形的边相交产生的交点
@@ -101,7 +109,8 @@ print([round(_) for _ in corners])
 
 ### 点在四边形(矩形)内
 
-如图所示，四边形(矩形)通过`ABCD`四个顶点表示，可以使用较强的规则判断`P`在矩形内，即`AP`在`AB` 的投影在线段`AB`上，在`AD`的投影在线段`AD`上。
+如图所示，四边形(矩形)通过`ABCD`四个顶点表示，可以使用较强的规则判断`P`在矩形内，
+即`AP`在`AB` 的投影在线段`AB`上，在`AD`的投影在线段`AD`上。
 
 ![projection](/imgs/rotated-iou/projection.png){:height="25%" width="25%"}
 
@@ -120,7 +129,8 @@ $$
 $a\cdot b = |a||b|\cos\theta$$
  实际表示为$b$在$a$上的投影的长度。如果投影与$a$方向相反，则为负值
 
-所以代码的思路就是，通过点击得到投影长度，通过判断投影长度确定点在矩形框内。
+所以代码的思路就是，通过点击得到投影长度，
+通过判断投影长度确定点在矩形框内。
 
 #### 代码
 SECOND函数为 `point_in_quadrilateral`
@@ -149,11 +159,14 @@ def point_in_quadrilateral(pt_x, pt_y, corners):
 
 > 参考：[判断线段相交的最简方法](https://segmentfault.com/a/1190000004457595)
 
-对于两个直线是否相交，一种方法是计算线段斜率，首先确定不平行，然后联立方程，计算交点坐标，最后运用定比分点公式，判断交点是否在线段上。但是使用斜率和定比分点，可能会出现精度丢失的现象，同时浮点数运算耗时。
+对于两个直线是否相交，一种方法是计算线段斜率，首先确定不平行，然后联立方程，计算交点坐标，
+最后运用定比分点公式，判断交点是否在线段上。但是使用斜率和定比分点，可能会出现精度丢失的现象，同时浮点数运算耗时。
 
 ![intersection](/imgs/rotated-iou/segment_intersection.png){:height="50%" width="50%"}
 
-上图可以表示两个线段位置的所有可能情况。定义`direct(a, b)` 为向量有序对的旋转方向。其旋转方向为 **使 a 能够旋转一个小于 180 度的角并与 b 重合的方向**，简记为 `direct(a, b)`。若 `a` 和 `b` 反向共线，则旋转方向取任意值。
+上图可以表示两个线段位置的所有可能情况。定义`direct(a, b)` 为向量有序对的旋转方向。
+其旋转方向为 **使 a 能够旋转一个小于 180 度的角并与 b 重合的方向**，
+简记为 `direct(a, b)`。若 `a` 和 `b` 反向共线，则旋转方向取任意值。
 
 则上图三种情况可以概括为：
 
@@ -189,7 +202,10 @@ $$
 >
 > Using homogeneous coordinates
 
-直接用wiki的结论，两个点可以确定一条直线，因此定义两条直线$(x_1, y_1) (x_2, y_2)$ 和 $(x_3, y_3) (x_4, y_4)$ ，可以通过以下公式计算交点的坐标 $(P_x, P_y)$
+直接用wiki的结论，两个点可以确定一条直线，
+因此定义两条直线$(x_1, y_1) (x_2, y_2)$ 和 $(x_3, y_3) (x_4, y_4)$, 
+可以通过以下公式计算交点的坐标 $(P_x, P_y)$
+
 $$
 P_x = \frac{(x_1y_2 - y_1x_2)(x_3 -x_4) - (x_1 - x_2)(x_3y_4 - y_3x_4)}{(x_1-x_2)(y_3-y_4) - (y_1-y_2)(x_3 - x_4)}
 $$
@@ -283,7 +299,9 @@ Px: 1.0, Py: -1.0
 2. 计算中心点到每个单位向量[vx, vy]。
 3. 以x轴正方向为其实遍，按照顺时针方向扫描360度，对扫描到的点进行排序
 
-关于步骤3，具体操作为：对于已经归一化单位向量，先考虑从180度到360度，有$v_y\ge0$, $-1 <v_x< 1$，$v_x$单增。对于从0到180度，有$v_y<0$, $-1 < v_x < 1$, 其变化范围是由1到-1(单减)。则排序使用索引k可以为：
+关于步骤3，具体操作为：对于已经归一化单位向量，先考虑从180度到360度，
+有$v_y\ge0$, $-1 <v_x< 1$，$v_x$单增。对于从0到180度，
+有$v_y<0$, $-1 < v_x < 1$, 其变化范围是由1到-1(单减)。则排序使用索引k可以为：
 
 1. $v_y >0, k = v_x$
 2. $v_y < 0, k = -2-v_x$
