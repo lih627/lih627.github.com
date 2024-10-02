@@ -5,7 +5,7 @@ tags: code cpp
 ---
 
 最近发现,对于包含 value 为 unicode的 JSON 和 protobuf, toStyledString 和 DebugString 打印结果不相同.
-还以为是自己遇到了bug,实际上两者存储的内容并无区别.
+还以为是自己遇到了bug, 实际上两者存储的内容并无区别.
 
 <!--more-->
 
@@ -67,7 +67,7 @@ std::cout << msg.name() << std::endl;
 
 4. UTF-8 `\u6842` 为 `0x6843`, UTF-8 编码后的结果为 `11100110 10100001 10000011` 即 `(11)(100)(110) (10)(100)(001) (10)(000)(011), 346 241 203` 
 
-原因总结：
+总结：
 
 - 编码: `toStyledString()` 和 `DebugString()` 输出中对非 ASCII 字符的处理方式不同.
 - 表现形式: `toStyledString()` 使用 Unicode 转义序列，`DebugString()` 使用八进制字节表示.
