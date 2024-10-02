@@ -1,7 +1,7 @@
 ---
 layout: article
 title: 北京港澳通行证和日本签证申请记录
-tags: life visa
+tags: daily visa
 ---
 
 记录一下在北京申请港澳通行证和日本签证的流程.
