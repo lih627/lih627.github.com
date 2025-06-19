@@ -93,6 +93,16 @@ $ bundle update
 $ bundle exec jekyll server --livereload
 ```
 
+### 20250619 更新
+
+看起来目前 mac os ruby 版本无法在本地启动博客服务, 通过docker测试
+
+先 cd 到项目目录, 然后运行
+```
+docker run --rm -it -p 4000:4000 -v "$(pwd):/srv/jekyll" ruby:3-bullseye bash 
+cd /srv/jekyll/ &&  bundle update 
+bundle exec jekyll server --livereload --host 0.0.0.0 --port 4000 
+```
 
 
 ### References
