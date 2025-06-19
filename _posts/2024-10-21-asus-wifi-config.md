@@ -35,7 +35,7 @@ ssh user@192.168.50.1 -p 24
 # 登陆后, 进入 jffs 分区, 注意华硕 /etc 分区是非持久化分区, 每次重启其中的 hosts 都会修改.
 
 cd /jffs/configs/dnsmasq.d
-vi dnsmasq.conf
+vi dnsmasq.conf.add
 # 写入 address=/test.top/192.168.50.11 保存
 ```
 上面将 test.top 直接定向到本地的 192.168.50.11.
@@ -46,7 +46,16 @@ vi dnsmasq.conf
 service restart_dnsmasq
 ```
 
-路由器端配置结束.
+路由器端配置结束, 在路由器查看配置是否正确
+
+```
+lihao@RT-BE88U-66A0:/jffs/configs# nslookup test.top 127.0.0.1
+Server:    127.0.0.1
+Address 1: 127.0.0.1 localhost.localdomain
+
+Name:      nonote.top
+Address 1: 192.168.50.11 xxxxxx.www.asusrouter.com
+```
 
 返回笔记本电脑端, 需要处理两个事情:
 - 之前的DNS缓存清空
